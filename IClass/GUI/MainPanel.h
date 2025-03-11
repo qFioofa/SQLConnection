@@ -4,12 +4,13 @@
 #include "GeneralInfoTab.h"
 #include "UserAuthorityChose.h"
 
+template <typename __IDatabaseManage, typename __UserAuthorityHandler, typename __UserAuthority>
 class MainPanel : public Fl_Group
 {
 protected:
-    IMainConnection *connectionPanel;
-    IGeneralInfoTab *infoTab;
-    IUserAuthorityChose *authoritySelector;
+    IMainConnection<__IDatabaseManage> *connectionPanel;
+    IGeneralInfoTab<__IDatabaseManage> *infoTab;
+    IUserAuthorityChose<__UserAuthorityHandler, __UserAuthority> *authoritySelector;
 
 public:
     MainPanel(int X, int Y, int W, int H, const char *L = 0);
