@@ -1,10 +1,15 @@
-#pragma once
-#include "types.h"
+#ifndef __IDataDelete__
+#define __IDataDelete__
+#include "TableKey.h"
+#include "TableField.h"
 
-class IDataDeleter
+template <typename T>
+class IDataDelete
 {
 public:
-    virtual void deleteByKey() = 0;
-    virtual void deleteByField() = 0;
-    virtual ~IDataDeleter() = default;
+    virtual ~IDataDelete() = default;
+    virtual bool deleteByKey(const ITableKey<T> &key) = 0;
+    virtual bool deleteByField(const ITableField<T> &field) = 0;
 };
+
+#endif

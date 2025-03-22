@@ -1,19 +1,30 @@
 #pragma once
-#include <FL/Fl_Group.H>
-#include <FL/Fl_Input.H>
+#include <FL/Fl_Window.H>
+#include <FL/Fl_Choice.H>
 #include <FL/Fl_Button.H>
+#include "../DataBase/UserAuthority.h"
 
-template <typename __IDatabaseManager>
-class IMainConnection : public Fl_Group
+template <typename Role>
+class IMainConnection : public Fl_Window
 {
-protected:
-    Fl_Input *hostInput;
-    Fl_Input *portInput;
-    Fl_Button *connectButton;
-    __IDatabaseManager *dbManager;
-
 public:
-    IMainConnection(int X, int Y, int W, int H, const char *L = 0);
-    virtual void connectManager(__IDatabaseManager *manager);
-    virtual bool attemptConnection();
+    IMainConnection(int width, int height, const char *title) : Fl_Window(width, height, title), roleChoice(nullptr), confirmButton(nullptr) {}
+    virtual ~IMainConnection() = default;
+
+    virtual Role getSelectedRole() const
+    {
+        return selectedRole;
+    }
+
+protected:
+    Fl_Choice *roleChoice;
+    Fl_Button *confirmButton;
+    Role selectedRole;
+
+    static void confirmCallback(Fl_Widget *widget, void *data)
+    {
+        IMainConnection<Role> *window = static_cast<IMainConnection<Role> *>(data);
+        window->selectedRole = static_cast<Role>(window->roleChoice->value());
+        window->hide();
+    }
 };

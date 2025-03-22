@@ -1,5 +1,5 @@
-#pragma once
-#include "types.h"
+#ifndef __ITableKey__
+#define __ITableKey__
 
 template <typename T>
 class ITableKey
@@ -12,3 +12,5 @@ public:
 
     virtual bool isValid() const = 0;
 };
+
+#endif

@@ -6,8 +6,9 @@
 #include "DataDeleter.h"
 #include "DataInserter.h"
 #include "DataUpdater.h"
+#include "DataSearcher.h"
 #include "TableCleaner.h"
 #include "TableField.h"
-#include "UserManager.h"
+#include "UserAuthority.h"
 
 #endif

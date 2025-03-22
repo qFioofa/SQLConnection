@@ -1,10 +1,14 @@
-#pragma once
-#include "types.h"
+#ifndef __IDatabaseManager__
+#define __IDatabaseManager__
+
+#include <string>
 
 class IDatabaseManager
 {
 public:
-    virtual bool createDatabase(const cstr &dbName) = 0;
-    virtual bool deleteDatabase(const cstr &dbName) = 0;
     virtual ~IDatabaseManager() = default;
+    virtual bool createDatabase(const std::string &dbName) = 0;
+    virtual bool deleteDatabase(const std::string &dbName) = 0;
 };
+
+#endif

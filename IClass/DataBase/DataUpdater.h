@@ -1,10 +1,14 @@
-#pragma once
-#include "types.h"
+#ifndef __IDataUpdater__
+#define __IDataUpdater__
+#include <string>
+#include "TableKey.h"
 
 template <typename T>
 class IDataUpdater
 {
 public:
-    virtual void updateData(const T &filter, const T &newValue) = 0;
     virtual ~IDataUpdater() = default;
+    virtual bool updateData(const ITableKey<std::string> &key, const T &newValue) = 0;
 };
+
+#endif
